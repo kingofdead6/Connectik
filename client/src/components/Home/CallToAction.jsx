@@ -14,7 +14,7 @@ const CallToAction = () => {
           className="text-3xl md:text-5xl font-extrabold mb-10 md:mb-20 text-white"
         >
           Prêt à passer au{" "}
-          <span className="text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
+          <span className="text-yellow-400 ">
             niveau supérieur
           </span>{" "}
           ?
@@ -59,7 +59,7 @@ const CallToAction = () => {
               boxShadow: "0 0 25px rgba(96,165,250,0.9)",
             }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => navigate("/packages")}
+            onClick={() => navigate("/services")}
             className="cursor-pointer px-10 py-4 bg-blue-500/90 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg transition duration-200"
           >
             Voir les offres

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { jwtDecode } from "jwt-decode";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,24 +37,18 @@ export default function Navbar() {
   // Authentication check
   useEffect(() => {
     const checkAuth = () => {
-      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-      if (token) {
-        try {
-          const decoded = jwtDecode(token);
-          setUserType(decoded.usertype);
-        } catch {
-          setUserType(null);
-        }
+      const token = localStorage.getItem("token");
+      const role = localStorage.getItem("usertype");
+      if (token && role) {
+        setUserType(role);
       } else {
         setUserType(null);
       }
     };
     checkAuth();
     const handleAuthChange = () => checkAuth();
-    window.addEventListener("storage", handleAuthChange);
     window.addEventListener("authChanged", handleAuthChange);
     return () => {
-      window.removeEventListener("storage", handleAuthChange);
       window.removeEventListener("authChanged", handleAuthChange);
     };
   }, []);
@@ -63,7 +56,7 @@ export default function Navbar() {
   // Logout handler
   const handleLogout = () => {
     localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("usertype");
     setUserType(null);
     window.dispatchEvent(new Event("authChanged"));
     navigate("/login");
@@ -80,21 +73,15 @@ export default function Navbar() {
   const adminLinks = [
     { label: "Dashboard", path: "/admin/dashboard" },
     { label: "Services", path: "/admin/services" },
-    { label: "Messages", path: "/admin/messages" },
-    { label: "Users", path: "/admin/users" },
+    { label: "Messages", path: "/admin/contact" },
+    { label: "Consultation", path: "/admin/consultation" },
+    { label: "NewsLetter" , path: "/admin/newsletter"}
   ];
 
-  const superadminLinks = [
-    { label: "Dashboard", path: "/admin/dashboard" },
-    { label: "Services", path: "/admin/services" },
-    { label: "Messages", path: "/admin/messages" },
-    { label: "Users", path: "/admin/users" },
-    { label: "Settings", path: "/admin/settings" },
-  ];
+ 
 
-  const links = userType === "superadmin" ? superadminLinks : userType === "admin" ? adminLinks : userLinks;
+  const links = userType === "admin" ? adminLinks : userLinks;
 
-  // Render navigation items
   const renderNavItems = (items) =>
     items.map((item, index) => (
       <li key={index}>
@@ -120,14 +107,14 @@ export default function Navbar() {
       <div className="container mx-auto flex justify-between items-center py-4 px-4 sm:px-6">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full  flex items-center justify-center ">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center">
             <img
               className="rounded-full object-cover w-full h-full"
               src="https://res.cloudinary.com/dtwa3lxdk/image/upload/v1757084395/logooo_gfwzzz.png"
               alt="CONNECTIK Logo"
             />
           </div>
-          <h1 className="text-lg sm:text-xl font-bold text-white drop-shadow-[0_0_6px_#ff1a1a]">
+          <h1 className="text-lg sm:text-xl font-bold text-white drop-shadow-cyan-400">
             CONNECTIK
           </h1>
         </div>

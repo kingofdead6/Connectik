@@ -27,7 +27,7 @@ export default function Testimonials() {
         className="relative max-w-7xl mx-auto text-center"
       >
         {/* Title */}
-        <h2 className="text-4xl md:text-6xl font-extrabold mb-16 drop-shadow-[0_0_15px_rgba(96,165,250,0.7)]">
+        <h2 className="text-4xl md:text-6xl font-extrabold mb-16 ">
           Témoignages
         </h2>
 

@@ -41,7 +41,7 @@ const WhyChoose = () => {
         className="text-4xl md:text-5xl font-bold mb-16"
       >
        Pourquoi choisir 
-       <span className="text-yellow-400">CONNECTIK</span> ?
+       <span className="text-yellow-400"> CONNECTIK</span> ?
       </motion.h2>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">

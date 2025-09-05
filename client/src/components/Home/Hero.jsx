@@ -29,7 +29,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-4xl px-6">
         <motion.h1
           ref={headingRef}
-          className="text-5xl md:text-6xl font-extrabold leading-tight text-yellow-400 drop-shadow-[0_0_15px_#FFD700]"
+          className="text-5xl md:text-6xl font-extrabold leading-tight text-yellow-400 "
         >
           Agence Premium d’Intégration Web & IA
         </motion.h1>
@@ -45,18 +45,28 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
-          <button className="px-6 py-3 bg-yellow-400 text-[#0a0f1f] hover:bg-yellow-300 rounded-2xl font-semibold shadow-[0_0_20px_#FFD700] transition">
-            Diagnostic gratuit
-          </button>
-          <button className="px-6 py-3 bg-[#0a0f1f] border border-yellow-400 text-yellow-400 hover:bg-yellow-500 hover:text-[#0a0f1f] rounded-2xl font-semibold shadow-[0_0_20px_#1e3a8a] transition">
-            Demander un devis
-          </button>
-        </motion.div>
+  className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1, duration: 1 }}
+>
+  {/* Vers la page Consultation */}
+  <a
+    href="/consultation"
+    className="px-6 py-3 bg-yellow-400 text-[#0a0f1f] hover:bg-yellow-300 rounded-2xl font-semibold shadow-[0_0_20px_#FFD700] transition"
+  >
+    Diagnostic gratuit
+  </a>
+
+  {/* Vers la page Services */}
+  <a
+    href="/services"
+    className="px-6 py-3 bg-[#0a0f1f] border border-yellow-400 text-yellow-400 hover:bg-yellow-500 hover:text-[#0a0f1f] rounded-2xl font-semibold shadow-[0_0_20px_#1e3a8a] transition"
+  >
+    Notre Services
+  </a>
+</motion.div>
+
       </div>
     </section>
   );

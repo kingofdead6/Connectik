@@ -45,12 +45,24 @@ router.patch('/:id/toggle-seen', auth, async (req, res) => {
   try {
     const contact = await ContactUs.findById(req.params.id);
     if (!contact) return res.status(404).json({ message: 'Contact not found' });
+
     contact.seen = !contact.seen;
     await contact.save();
-    res.json(contact);
+
+    res.json({
+      _id: contact._id,
+      name: contact.name,
+      email: contact.email,
+      message: contact.message,
+      seen: contact.seen,
+      receivedAt: contact.receivedAt,
+      createdAt: contact.createdAt,
+      updatedAt: contact.updatedAt,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 export default router;
